@@ -1,5 +1,7 @@
 #include <GLFW/glfw3.h>
 
+#include "tompaine.hpp"
+
 int main(void)
 {
     GLFWwindow* window;
@@ -28,14 +30,8 @@ int main(void)
 
         /* Swap front and back buffers */
 		
-				glColor3f(1.f, 0.f, 0.f);
-				glBegin(GL_QUADS);
-					glVertex2f(-0.5f, 0.5f);
-					glVertex2f(-0.5f, -0.5f);
-					glVertex2f(0.5f, -0.5f);
-					glVertex2f(0.5f, 0.5f);
-				glEnd();
-
+				tp::draw_rect(0.3f, -0.2f, 0.3f, 0.5f, 0.f, 1.f, 0.f);
+					
 				glfwSwapBuffers(window);
 
         /* Poll for and process events */
