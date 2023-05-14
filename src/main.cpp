@@ -9,9 +9,8 @@ int main(void)
         return -1;
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-    if (!window)
-    {
+    window = glfwCreateWindow(800, 800, "Hello World", NULL, NULL);
+    if (!window){
         glfwTerminate();
         return -1;
     }
@@ -19,7 +18,8 @@ int main(void)
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
 
-		glClearColor(0.3, 0.2, 0.9, 0.1);
+		glClearColor(1.0, 1.0, 1.0, 1.0);
+			
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
@@ -27,7 +27,16 @@ int main(void)
         glClear(GL_COLOR_BUFFER_BIT);
 
         /* Swap front and back buffers */
-        glfwSwapBuffers(window);
+		
+				glColor3f(1.f, 0.f, 0.f);
+				glBegin(GL_QUADS);
+					glVertex2f(-0.5f, 0.5f);
+					glVertex2f(-0.5f, -0.5f);
+					glVertex2f(0.5f, -0.5f);
+					glVertex2f(0.5f, 0.5f);
+				glEnd();
+
+				glfwSwapBuffers(window);
 
         /* Poll for and process events */
         glfwPollEvents();
