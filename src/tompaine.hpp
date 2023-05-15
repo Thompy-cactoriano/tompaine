@@ -1,12 +1,19 @@
 #include <GLFW/glfw3.h>
+#include <array>
+#include <string>
 
 namespace tp{
-	void draw_rect(float x, float y,  float width,  float height, float r, float b, float g);
-
-	class ColorRGB{
+	class Window{
+		private:
+			std::string title;
+	
 		public:
-		float r, g, b;
+			GLFWwindow * glfw_window;
 
-		ColorRGB(float r, float g, float b);
-	}
+			unsigned int width, height;
+			
+			Window(std::string title, unsigned int width, unsigned int height);
+	};
+
+	void draw_rect(Window window,float x, float y,  float width,  float height, std::array<float, 3> RGB);
 }
