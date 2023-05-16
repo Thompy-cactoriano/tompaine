@@ -13,6 +13,8 @@ namespace tp{
 			unsigned int width, height;
 			
 			Window(std::string title, unsigned int width, unsigned int height);
+
+			void update();
 	};
 
 	void draw_rect(Window window,float x, float y,  float width,  float height, std::array<float, 3> RGB);
