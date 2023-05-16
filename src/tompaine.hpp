@@ -3,6 +3,19 @@
 #include <string>
 
 namespace tp{
+	class Rect{
+		private:	
+			std::array<float, 3> RGB;
+
+		public:
+			int x, y;
+			unsigned int width, height;
+
+			Rect(int x, int y, unsigned int width, unsigned int height, std::array<float, 3> RGB);
+	
+			std::array<float, 3> get_color();
+	};
+
 	class Window{
 		private:
 			std::string title;
@@ -15,7 +28,9 @@ namespace tp{
 			Window(std::string title, unsigned int width, unsigned int height);
 
 			void update();
+			void draw_rect(Rect rect);
 	};
 
-	void draw_rect(Window window,float x, float y,  float width,  float height, std::array<float, 3> RGB);
+	
+	void init();
 }

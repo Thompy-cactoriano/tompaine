@@ -4,6 +4,7 @@
 
 #include "tompaine.hpp"
 
+/*--->> classes <<---*/
 tp::Window::Window(std::string title, unsigned int width, unsigned int height){
 	this->title = title;
 	this->width = width;
@@ -31,15 +32,31 @@ void tp::Window::update(){
         glfwSwapBuffers(this->glfw_window);
         glfwPollEvents();
     }
-
 }
 
-void tp::draw_rect(tp::Window window, float x,  float y,  float width, float  height, std::array<float, 3> RGB){
-	glColor3f(RGB[0], RGB[1], RGB[2]);
+tp::Rect::Rect(int x, int y, unsigned int width, unsigned int height, std::array<float, 3> RGB){
+	this->x = x;
+	this->y = y;
+	this->width = width;
+	this->height = height;
+
+	this->RGB = RGB;
+}
+
+std::array<float, 3> tp::Rect::get_color(){
+	return this->RGB;
+}
+
+void tp::init(){
+	glfwInit();
+}
+
+void tp::Window::draw_rect(Rect rect){
+  glColor3f(rect.get_color()[0], rect.get_color()[1], rect.get_color()[2]);
 	glBegin(GL_QUADS);
-		glVertex2f(x - width, y + height);
-		glVertex2f(x - width, y - height);
-		glVertex2f(x + width, y - height);
-		glVertex2f(x + width, y + height);
+		glVertex2f(rect.x - rect.width, rect.y + rect.height);
+		glVertex2f(rect.x - rect.width, rect.y - rect.height);
+		glVertex2f(rect.x + rect.width, rect.y - rect.height);
+		glVertex2f(rect.x + rect.width, rect.y + rect.height);
 	glEnd();
 }
