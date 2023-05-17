@@ -1,4 +1,5 @@
 #include <GLFW/glfw3.h>
+#include <array>
 #include <string>
 #include <iostream>
 
@@ -27,11 +28,13 @@ tp::Window::Window(std::string title, unsigned int width, unsigned int height){
 }
 
 void tp::Window::update(){
-	    while (!glfwWindowShouldClose(this->glfw_window)){
-        glClear(GL_COLOR_BUFFER_BIT);
-        glfwSwapBuffers(this->glfw_window);
-        glfwPollEvents();
-    }
+  glfwSwapBuffers(this->glfw_window);
+  glfwPollEvents();   
+}
+
+bool tp::Window::is_closed(){
+  glClear(GL_COLOR_BUFFER_BIT);
+	return glfwWindowShouldClose(this->glfw_window);
 }
 
 tp::Rect::Rect(int x, int y, unsigned int width, unsigned int height, std::array<float, 3> RGB){
@@ -53,10 +56,20 @@ void tp::init(){
 
 void tp::Window::draw_rect(Rect rect){
   glColor3f(rect.get_color()[0], rect.get_color()[1], rect.get_color()[2]);
+
+	float x = (float)rect.x / this->width;
+	float y = (float)rect.y / this->height;
+
+	x -= 0.5f;
+	y -= 0.5f;
+
+	float width = (float)rect.width / this->width;
+	float height = (float)rect.height / this->height;
+
 	glBegin(GL_QUADS);
-		glVertex2f(rect.x - rect.width, rect.y + rect.height);
-		glVertex2f(rect.x - rect.width, rect.y - rect.height);
-		glVertex2f(rect.x + rect.width, rect.y - rect.height);
-		glVertex2f(rect.x + rect.width, rect.y + rect.height);
+		glVertex2f(x - width, y   + height);
+		glVertex2f(x - width, y - height);
+		glVertex2f(x + width, y - height);
+		glVertex2f(x + width, y + height);
 	glEnd();
 }

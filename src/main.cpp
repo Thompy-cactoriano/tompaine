@@ -1,15 +1,19 @@
-#include <GLFW/glfw3.h>
-#include <string>
-
 #include "tompaine.hpp"
+#include <iostream>
 
-int main(void){
-		tp::init();
+int main(){
+	std::cout << "hello world" << '\n';
 
-		tp::Rect rect(300, 400, 50, 40, {1.f, 0.f, 0.65f});
-		tp::Window window(std::string("Ola tompaine"), 800, 600);
+	tp::init();
+
+	tp::Rect rect(400, 300, 200, 40, {0.3f, 1.f, 0.f});
+	tp::Window window("ola tompaine!", 800, 600);
+
+	while (window.is_closed() == false){
+		window.draw_rect(rect);
 
 		window.update();
+	}
 
-		return 0;
+	return 0;
 }

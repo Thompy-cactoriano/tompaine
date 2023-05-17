@@ -29,6 +29,8 @@ namespace tp{
 
 			void update();
 			void draw_rect(Rect rect);
+
+			bool is_closed();
 	};
 
 	
