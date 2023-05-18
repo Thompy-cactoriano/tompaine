@@ -12,6 +12,13 @@ int main(){
 	while (window.is_closed() == false){
 		window.draw_rect(rect);
 
+		std::cout << "mouse_pos_x: " << window.get_mouse_position()[0] << '\n';
+		std::cout << "mouse_pos_y: " << window.get_mouse_position()[1] << '\n';
+
+		if (window.get_key(tp::key_a) == true){
+			std::cout << "oi Azão!" << '\n';
+		}
+
 		window.update();
 	}
 
